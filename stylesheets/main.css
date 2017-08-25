@@ -1,0 +1,60 @@
+header {
+  height: 100vh;
+  background-image: url(../static/car.jpg);
+  background-size: cover;
+  z-index: 2;
+  display: flex;
+  flex-flow: column;
+  position: relative;
+}
+
+#buttons {
+    margin-top: 9.4%;
+    margin-left: 25vw;
+}
+
+.btn {
+  color: #fafafa;
+  border-color: #fafafa;
+  width: 13vw;
+  margin-right: 2%;
+}
+
+#me-container {
+  border-radius:10px; /* regular */
+  background-color: rgba(0,0,0,0.5);
+  margin: 0 auto;
+  margin-top: 63vh;
+  width: 86vw;
+  height: 32vh;
+  border: 1px solid #b2b9c4;
+  -webkit-animation-delay: 3s;
+}
+
+.img {
+  float: left;
+  border-radius: 100%;
+  color: #fafafa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 30vh;
+          flex: 0 0 30vh;
+  height: 30vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  position: relative;
+  width: 30vh;
+  -webkit-animation: fadeIn 0.5s;
+          animation: fadeIn 0.5s;
+  border: 4px solid #c0c0c0;
+  margin-top: 0.55%;
+  margin-left: 1.8%;
+}
+.img img {
+  height: 192%;
+  margin-top: -16%;
+}
