@@ -19,6 +19,7 @@
                 
                 <div id="buttons">
                     <button id="project-btn" type="button" class="btn btn-outline-secondary">Projects</button>
+                    <!--you messed up here-->
                     <button id="about-btn" class="btn btn-outline-secondary">About</button>
                     <button id="achievements-btn" class="btn btn-outline-secondary">Achievements</button>
                     <button id="contact-btn" class="btn btn-outline-secondary">Contact</button>
@@ -73,7 +74,7 @@
     				   </ul>
                     </div>
                     
-                    <div class="col-md-6" style="background-color: red;">
+                    <div id="car" class="col-md-6">
                         <!--cad canvas here-->
                     </div>
                 </div>
@@ -89,12 +90,11 @@
     			<p>The Leadership Academy scholarship is awarded to undergraduate students who possess exceptional leadership potential while being acdemically strong. Recipients of the scholarship receive a full-tuition award for up to four years of undergraduate education and participate in an intensive leadership-development program, including:
                 </p>
                 <ul>
-                    <li>Assisting in facilitating the sophomore leadership retreat experience</li>
-                    <li>A series of leadership seminars and workshops</li>
-                    <li>Assignment to a professional mentor</li>
-                    <li>Leadership Academy Scholars will receive a Certificate in Leadership Studies upon successful completion of the academy’s programs.</li>
+                <li>Assisting in facilitating the sophomore leadership retreat experience</li>
+                <li>A series of leadership seminars and workshops</li>
+                <li>Assignment to a professional mentor</li>
+                <li>Leadership Academy Scholars will receive a Certificate in Leadership Studies upon successful completion of the academy’s programs.</li>
                 </ul>
-                
                 <div id="contact-header" class="page-header text-center">
 	  		        <h1>Contact</h1>
 	  		        <hr>
@@ -111,7 +111,7 @@
         		
         			<div class="col-md-3">
         				<a href="static/Resum2.6.pdf" target="_blank" class="img contact-icons">
-        					<div class="overlay">Resume</div>
+        					<div class="overlay">Resum2.6</div>
         					<i class="fa fa-file-text" aria-hidden="true"></i>
         				</a>
         			</div>
@@ -124,8 +124,8 @@
         			</div>
         			
         			<div class="col-md-3">
-        				<a class="img contact-icons">
-        					<div class="overlay">mkhan62@hawk.iit.edu</div>
+        				<a data-toggle="popover" data-placement="bottom" data-content="Email copied to cliboard" data-clipboard-target="#foo" id="email" class="img contact-icons">
+        					<div id="foo" class="overlay">mkhan62@hawk.iit.edu</div>
         					<i class="fa fa-envelope" aria-hidden="true"></i>
         				</a>
         			</div>
@@ -206,7 +206,7 @@
                     // }
                     new THREE.MeshLambertMaterial({
                         overdraw:true,
-                        color: 0xaa0000,
+                        color: 0x6f7072,
                         shading: THREE.FlatShading
                     }
                 ));
@@ -293,7 +293,7 @@
                                     geo, 
                                     new THREE.MeshLambertMaterial({
                                         overdraw:true,
-                                        color: 0xaa0000,
+                                        color: 0xff0000,
                                         shading: THREE.FlatShading
                                     }
                                 ));
@@ -322,14 +322,18 @@
                 }
             };
             //shazy sehnaningans
-            // init();
-            // animate();
+            init();
+            animate();
             function init() {
                 //Detector.addGetWebGLMessage();
+                var carWidth = $('#car').width();
+                var carHeight = $('#car').height();
+                console.log(carHeight);
+                console.log(carWidth);
                 scene = new THREE.Scene();
-                camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-                camera.position.z = 70;
-                camera.position.y = 0;
+                camera = new THREE.PerspectiveCamera( 100, carWidth/carHeight, 0.1, 9000000 );
+                camera.position.z = 250;
+                camera.position.y = 120;
                 scene.add( camera );
                 var directionalLight = new THREE.DirectionalLight( 0xffffff );
                 directionalLight.position.x = 0; 
@@ -345,8 +349,8 @@
                             console.log(rep);
                             parseStlBinary(rep);
                             //parseStl(xhr.responseText);
-                            mesh.rotation.x = 5;
-                            mesh.rotation.z = .25;
+                            mesh.rotation.x = 50;
+                            mesh.rotation.z = 0;
                             console.log('done parsing');
                         }
                     }
@@ -362,12 +366,13 @@
                 //xhr.setRequestHeader('charset', 'x-user-defined');
                 xhr.send( null );
                 renderer = new THREE.WebGLRenderer(); //new THREE.CanvasRenderer();
-                renderer.setSize( window.innerWidth, window.innerHeight );
-                document.body.appendChild( renderer.domElement );
+                renderer.setClearColor( 0xffffff, 1);
+                renderer.setSize( carWidth, carHeight );
+                document.getElementById("car").appendChild( renderer.domElement );
                 stats = new Stats();
                 stats.domElement.style.position = 'absolute';
                 stats.domElement.style.top = '0px';
-                document.body.appendChild(stats.domElement);
+                document.getElementById("car").appendChild(stats.domElement);
             }
             function animate() {
                 // note: three.js includes requestAnimationFrame shim
@@ -378,7 +383,7 @@
             function render() {
                 //mesh.rotation.x += 0.01;
                 if (mesh) {
-                    mesh.rotation.z += 0.02;
+                    mesh.rotation.y += 0.002;
                 }
                 //light1.position.z -= 1;
                 renderer.render( scene, camera );
