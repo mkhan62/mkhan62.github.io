@@ -176,7 +176,7 @@ a:hover {
   width: 86vw;
   height: 32vh;
   border: 1px solid #b2b9c4;
-  -webkit-animation-delay: 2s;
+  -webkit-animation-delay: 0.5s;
 }
 
 #project-header {
